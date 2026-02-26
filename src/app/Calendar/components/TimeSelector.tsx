@@ -12,7 +12,7 @@ export const TimeSelector = ({ selectedDate, selectedTime, onSelectTime }: TimeS
 
   const defaultDinnerSlots = ["19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"];
 
-  const friSatDinnerSlots = ["17:00", "21:00"]; // <-- solo viernes/sábado
+  const friSatDinnerSlots = ["19:00", "21:15"]; // <-- solo viernes/sábado
 
   const { lunchSlots, dinnerSlots, isClosed } = useMemo(() => {
     if (!selectedDate) {

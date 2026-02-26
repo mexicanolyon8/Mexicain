@@ -10,7 +10,7 @@
     selectedPeople,
     onSelectPeople,
     }: PeopleSelectorProps) => {
-    const options = Array.from({ length: 12 }, (_, i) => i + 1);
+    const options = Array.from({ length: 6 }, (_, i) => i + 1);
     
     return (
     <div className="w-full max-w-[390px] mx-auto">

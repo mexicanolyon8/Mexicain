@@ -97,7 +97,7 @@ export const BookingWidget = () => {
           time: check.data.time,
           people: check.data.people,
           nom: check.data.name,
-          email: "mikeu1807@gmail.com", // si tu API lo requiere, lo dejamos fijo por ahora
+          email: "mexicanolyon8@gmail.com", // si tu API lo requiere, lo dejamos fijo por ahora
           telephone: check.data.phone,
         }),
       });
