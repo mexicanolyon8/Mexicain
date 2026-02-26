@@ -22,10 +22,10 @@ export async function POST(req: NextRequest) {
       dateISO = data.date;
     } else if (data.date) {
       const d = new Date(data.date);
-      if (Number.isNaN(d.getTime())) throw new Error(`Fecha inválida: "${data.date}"`);
+      if (Number.isNaN(d.getTime())) throw new Error(`Date Invalide: "${data.date}"`);
       dateISO = d.toISOString().split("T")[0];
     } else {
-      throw new Error("Falta fecha en reserva");
+      throw new Error("Il manque date en reservation");
     }
 
     const heure = typeof data.time === "string" ? data.time : "";
@@ -79,13 +79,13 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: "resend@resend.dev",
       to: ["mexicanolyon8@gmail.com"],
-      subject: `🌮 NUEVA RESERVA #${mesa.numero}`,
+      subject: `🌮 NEUVELLE RESERVATION #${mesa.numero}`,
       html: `
         <h1 style="color: #e74c3c;">✅ ¡Confirmada!</h1>
         <p>
-          <strong>Table:</strong> #${mesa.numero} (${mesa.capacite} lugares)<br>
+          <strong>Table:</strong> #${mesa.numero} (${mesa.capacite} places)<br>
           <strong>Fecha:</strong> ${dateISO} ${heure}<br>
-          <strong>${personnes} personas</strong> - ${nom}<br>
+          <strong>${personnes} personnes</strong> - ${nom}<br>
           <strong>Tel:</strong> ${telephone}
         </p>
         <hr>
@@ -96,10 +96,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       mesa: mesa.numero,
-      message: `🎉 ¡Table ${mesa.numero} reservada!`,
+      message: `🎉 ¡Table ${mesa.numero} reservé!`,
     });
   } catch (error: any) {
     console.error("💥 Error:", error?.message || error);
-    return NextResponse.json({ error: error?.message || "Error servidor" }, { status: 500 });
+    return NextResponse.json({ error: error?.message || "Erreur servidor" }, { status: 500 });
   }
 }
