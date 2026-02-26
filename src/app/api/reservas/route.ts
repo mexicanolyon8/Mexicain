@@ -36,15 +36,15 @@ export async function POST(req: NextRequest) {
     const email = (data.email || "") as string;
     const telephone = (data.telephone || data.phone || "") as string;
 
-    if (!heure) return NextResponse.json({ error: "Falta hora" }, { status: 400 });
+    if (!heure) return NextResponse.json({ error: "Il manque l'heure" }, { status: 400 });
     if (!Number.isFinite(personnes) || personnes < 1) {
-      return NextResponse.json({ error: "Personas inválidas" }, { status: 400 });
+      return NextResponse.json({ error: "Personnes invalides" }, { status: 400 });
     }
     if (!nom || String(nom).trim().length < 2) {
-      return NextResponse.json({ error: "Nombre inválido" }, { status: 400 });
+      return NextResponse.json({ error: "Nom invalide" }, { status: 400 });
     }
     if (!telephone || String(telephone).trim().length < 6) {
-      return NextResponse.json({ error: "Teléfono inválido" }, { status: 400 });
+      return NextResponse.json({ error: "Telephone invalide" }, { status: 400 });
     }
 
     console.log("✅ Parsed:", { dateISO, heure, personnes, nom, telephone });
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
 
     if (!mesasLibres?.length) {
       return NextResponse.json(
-        { error: `😔 No mesas libres ${dateISO} ${heure} x${personnes}` },
+        { error: `😔 No tables disponibles ${dateISO} ${heure} x${personnes}` },
         { status: 400 }
       );
     }
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     // Email (modo resend.dev: solo a tu correo)
     await resend.emails.send({
       from: "resend@resend.dev",
-      to: ["mikeu1807@gmail.com"],
+      to: ["mexicanolyon8@gmail.com"],
       subject: `🌮 NUEVA RESERVA #${mesa.numero}`,
       html: `
         <h1 style="color: #e74c3c;">✅ ¡Confirmada!</h1>
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
           <strong>Tel:</strong> ${telephone}
         </p>
         <hr>
-        <small>07 58 89 06 68</small>
+        <small>Mexicano a votre dispo</small>
       `,
     });
 
